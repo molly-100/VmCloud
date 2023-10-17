@@ -186,6 +186,26 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval, toggleFavourite }) {
                         />
                     </Button>
                 </Col>
+
+                //     ADDED CODE
+                <Col xs={10} className="name">
+                    <span
+                        style={{
+                            color: item.favorite ? 'darkblue' : 'black',
+                            paddingRight: '10px',
+                        }}
+                    >
+                        {item.name}
+                    </span>
+                    {item.favorite && (
+                        <i
+                            className="fa fa-star"
+                            style={{ color: 'gold' }} // Adjust the star color
+                        />
+                    )}
+                </Col>
+
+                        
                 <Col xs={10} className="name">
                     {item.name}
                 </Col>

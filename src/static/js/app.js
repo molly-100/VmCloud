@@ -49,6 +49,26 @@ function TodoListCard() {
 
     if (items === null) return 'Loading...';
 
+    //TEST CODE
+    const toggleFavourite = (item) => {
+        fetch(`/items/${item.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                name: item.name,
+                completed: item.completed,
+                favourite: !item.favourite, // Toggle the favourite status
+            }),
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then((response) => response.json())
+            .then((updatedItem) => {
+                const updatedItems = items.map((i) =>
+                    i.id === updatedItem.id ? updatedItem : i
+                );
+                setItems(updatedItems);
+            });
+    };
+
     return (
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
@@ -62,6 +82,7 @@ function TodoListCard() {
                     key={item.id}
                     onItemUpdate={onItemUpdate}
                     onItemRemoval={onItemRemoval}
+                    toggleFavourite={toggleFavourite} // Pass the toggleFavorite function
                 />
             ))}
         </React.Fragment>
@@ -115,7 +136,7 @@ function AddItemForm({ onNewItem }) {
     );
 }
 
-function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
+function ItemDisplay({ item, onItemUpdate, onItemRemoval, toggleFavourite }) {
     const { Container, Row, Col, Button } = ReactBootstrap;
 
     const toggleCompletion = () => {
@@ -142,20 +163,26 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
             <Row>
                 <Col xs={1} className="text-center">
                     <Button
-                        className="toggles"
+                        //className="toggles"
+                        className={`toggles ${item.favourite ? 'favourite' : ''}`}
                         size="sm"
                         variant="link"
-                        onClick={toggleCompletion}
+                        //onClick={toggleCompletion}
+                        onClick={toggleFavourite} // Use the toggleFavourite function
                         aria-label={
-                            item.completed
-                                ? 'Mark item as incomplete'
-                                : 'Mark item as complete'
+                            //item.completed
+                            item.favourite
+                                ? 'Remove from favourites'
+                                : 'Add to favourites'
+                                // ? 'Mark item as incomplete'
+                                // : 'Mark item as complete'
                         }
                     >
                         <i
-                            className={`far ${
-                                item.completed ? 'fa-check-square' : 'fa-square'
-                            }`}
+                            className={`far ${item.favorite ? 'fa-star' : 'fa-star-o'}`}
+                            // className={`far ${
+                            //     item.completed ? 'fa-check-square' : 'fa-square'
+                            // }`}
                         />
                     </Button>
                 </Col>

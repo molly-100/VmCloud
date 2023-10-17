@@ -163,31 +163,55 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval, toggleFavourite }) {
             <Row>
                 <Col xs={1} className="text-center">
                     <Button
-                        //className="toggles"
-                        className={`toggles ${item.favourite ? 'favourite' : ''}`}
+                        className="toggles"
+                        //className={`toggles ${item.favourite ? 'favourite' : ''}`}
                         size="sm"
                         variant="link"
-                        //onClick={toggleCompletion}
-                        onClick={toggleFavourite} // Use the toggleFavourite function
+                        onClick={toggleCompletion}
+                        //onClick={toggleFavourite} // Use the toggleFavourite function
                         aria-label={
-                            //item.completed
-                            item.favourite
-                                ? 'Remove from favourites'
-                                : 'Add to favourites'
-                                // ? 'Mark item as incomplete'
-                                // : 'Mark item as complete'
+                            item.completed
+                            //item.favourite
+                                // ? 'Remove from favourites'
+                                // : 'Add to favourites'
+                                ? 'Mark item as incomplete'
+                                : 'Mark item as complete'
                         }
                     >
                         <i
-                            className={`far ${item.favorite ? 'fa-star' : 'fa-star-o'}`}
-                            // className={`far ${
-                            //     item.completed ? 'fa-check-square' : 'fa-square'
-                            // }`}
+                            //className={`far ${item.favorite ? 'fa-star' : 'fa-star-o'}`}
+                            className={`far ${
+                                item.completed ? 'fa-check-square' : 'fa-square'
+                            }`}
                         />
                     </Button>
                 </Col>
 
                 //     ADDED CODE
+                <Col xs={1} className="text-center">
+                    <Button
+                        className={`toggles ${item.favorite ? 'favourite' : ''}`}
+                        size="sm"
+                        variant="link"
+                        onClick={toggleFavourite}
+                        aria-label={item.favorite ? 'Remove from favorites' : 'Add to favorites'}
+                    >
+                        <i className={`far ${item.favorite ? 'fa-star' : 'fa-star-o'}`} />
+                    </Button>
+                </Col>
+
+                <Col xs={1} className="text-center">
+                    <Button
+                        className="toggles"
+                        size="sm"
+                        variant="link"
+                        onClick={toggleCompletion}
+                        aria-label={item.completed ? 'Mark item as incomplete' : 'Mark item as complete'}
+                    >
+                        <i className={`far ${item.completed ? 'fa-check-square' : 'fa-square'}`} />
+                    </Button>
+                </Col>
+
                 <Col xs={10} className="name">
                     <span
                         style={{
@@ -198,10 +222,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval, toggleFavourite }) {
                         {item.name}
                     </span>
                     {item.favorite && (
-                        <i
-                            className="fa fa-star"
-                            style={{ color: 'gold' }} // Adjust the star color
-                        />
+                        <i className="fa fa-star" style={{ color: 'gold' }} />
                     )}
                 </Col>
 

@@ -49,26 +49,6 @@ function TodoListCard() {
 
     if (items === null) return 'Loading...';
 
-    //TEST CODE
-    const toggleFavourite = (item) => {
-        fetch(`/items/${item.id}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                name: item.name,
-                completed: item.completed,
-                favourite: !item.favourite, // Toggle the favourite status
-            }),
-            headers: { 'Content-Type': 'application/json' },
-        })
-            .then((response) => response.json())
-            .then((updatedItem) => {
-                const updatedItems = items.map((i) =>
-                    i.id === updatedItem.id ? updatedItem : i
-                );
-                setItems(updatedItems);
-            });
-    };
-
     return (
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
@@ -82,7 +62,6 @@ function TodoListCard() {
                     key={item.id}
                     onItemUpdate={onItemUpdate}
                     onItemRemoval={onItemRemoval}
-                    toggleFavourite={toggleFavourite} // Pass the toggleFavorite function
                 />
             ))}
         </React.Fragment>
@@ -136,7 +115,7 @@ function AddItemForm({ onNewItem }) {
     );
 }
 
-function ItemDisplay({ item, onItemUpdate, onItemRemoval, toggleFavourite }) {
+function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
     const { Container, Row, Col, Button } = ReactBootstrap;
 
     const toggleCompletion = () => {
@@ -164,69 +143,22 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval, toggleFavourite }) {
                 <Col xs={1} className="text-center">
                     <Button
                         className="toggles"
-                        //className={`toggles ${item.favourite ? 'favourite' : ''}`}
                         size="sm"
                         variant="link"
                         onClick={toggleCompletion}
-                        //onClick={toggleFavourite} // Use the toggleFavourite function
                         aria-label={
                             item.completed
-                            //item.favourite
-                                // ? 'Remove from favourites'
-                                // : 'Add to favourites'
                                 ? 'Mark item as incomplete'
                                 : 'Mark item as complete'
                         }
                     >
                         <i
-                            //className={`far ${item.favorite ? 'fa-star' : 'fa-star-o'}`}
                             className={`far ${
                                 item.completed ? 'fa-check-square' : 'fa-square'
                             }`}
                         />
                     </Button>
                 </Col>
-
-                //     ADDED CODE
-                <Col xs={1} className="text-center">
-                    <Button
-                        className={`toggles ${item.favorite ? 'favourite' : ''}`}
-                        size="sm"
-                        variant="link"
-                        onClick={toggleFavourite}
-                        aria-label={item.favorite ? 'Remove from favorites' : 'Add to favorites'}
-                    >
-                        <i className={`far ${item.favorite ? 'fa-star' : 'fa-star-o'}`} />
-                    </Button>
-                </Col>
-
-                <Col xs={1} className="text-center">
-                    <Button
-                        className="toggles"
-                        size="sm"
-                        variant="link"
-                        onClick={toggleCompletion}
-                        aria-label={item.completed ? 'Mark item as incomplete' : 'Mark item as complete'}
-                    >
-                        <i className={`far ${item.completed ? 'fa-check-square' : 'fa-square'}`} />
-                    </Button>
-                </Col>
-
-                <Col xs={10} className="name">
-                    <span
-                        style={{
-                            color: item.favorite ? 'darkblue' : 'black',
-                            paddingRight: '10px',
-                        }}
-                    >
-                        {item.name}
-                    </span>
-                    {item.favorite && (
-                        <i className="fa fa-star" style={{ color: 'gold' }} />
-                    )}
-                </Col>
-
-                        
                 <Col xs={10} className="name">
                     {item.name}
                 </Col>

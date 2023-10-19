@@ -42,7 +42,7 @@ button:focus {
 /* Position the image as a fixed element at the bottom */
 .bottom-image {
     position: fixed;
-    bottom: 10px;
+    bottom: 25px;
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
 }

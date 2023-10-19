@@ -58,3 +58,23 @@ button:focus {
 img {
     border: 1px solid #000;
 }
+
+
+.todo-list-container {
+    max-height: 300px; 
+    overflow-y: auto; 
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    margin: 0 auto; 
+}
+
+.todo-list {
+    list-style: none; 
+    padding: 0;
+    margin: 0; 
+}
+
+.todo-list li {
+    padding: 5px; 
+    border-bottom: 1px solid #eee; 
+}

@@ -37,3 +37,14 @@ body {
 button:focus {
     border: 1px solid #333;
 }
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+img {
+    border: 1px solid #000;
+}

@@ -50,21 +50,25 @@ function TodoListCard() {
     if (items === null) return 'Loading...';
 
     return (
-        <React.Fragment>
-            <AddItemForm onNewItem={onNewItem} />
-            {items.length === 0 && (
-                // <p className="text-center">No items yet! Add one above!</p>
-                <p className="text-center">You have no todo items yet! Add one above!</p>
-            )}
-            {items.map(item => (
-                <ItemDisplay
-                    item={item}
-                    key={item.id}
-                    onItemUpdate={onItemUpdate}
-                    onItemRemoval={onItemRemoval}
-                />
-            ))}
-        </React.Fragment>
+        <div className="todo-list-container">
+            <React.Fragment>
+                <AddItemForm onNewItem={onNewItem} />
+                {items.length === 0 && (
+                    // <p className="text-center">No items yet! Add one above!</p>
+                    <p className="text-center">You have no todo items yet! Add one above!</p>
+                )}
+                <ul className="todo-list">
+                    {items.map(item => (
+                        <ItemDisplay
+                            item={item}
+                            key={item.id}
+                            onItemUpdate={onItemUpdate}
+                            onItemRemoval={onItemRemoval}
+                        />
+                    ))}
+                </ul>
+            </React.Fragment>
+        </div>
     );
 }
 

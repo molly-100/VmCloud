@@ -38,6 +38,16 @@ button:focus {
     border: 1px solid #333;
 }
 
+
+/* Position the image as a fixed element at the bottom */
+.bottom-image {
+    position: fixed;
+    bottom: 0;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+}
+
+
 .center-container {
     display: flex;
     justify-content: center;

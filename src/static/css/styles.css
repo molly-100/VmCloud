@@ -42,7 +42,7 @@ button:focus {
 /* Position the image as a fixed element at the bottom */
 .bottom-image {
     position: fixed;
-    bottom: 25px;
+    bottom: 35px;
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
 }
@@ -61,9 +61,9 @@ img {
 
 
 .todo-list-container {
-    max-height: 300px; 
+    max-height: 450px; 
     overflow-y: auto; 
-    border: 1px solid #ccc; 
+    border: 2px solid black; 
     padding: 10px; 
     margin: 0 auto; 
 }

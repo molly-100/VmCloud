@@ -75,7 +75,11 @@ async function storeItem(item) {
             'INSERT INTO todo_items (id, name, dateTime, completed) VALUES (?, ?, ?, ?)',
             [item.id, item.name, item.dateTime, item.completed ? 1 : 0],
             err => {
-                if (err) return rej(err);
+                if (err) {
+                    console.error('Error storing item:', err);
+                    return rej(err);
+                }
+                console.log('Item stored successfully:', item);
                 acc();
             },
         );

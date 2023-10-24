@@ -94,7 +94,7 @@ function AddItemForm({ onNewItem }) {
         };
         fetch('/items', {
             method: 'POST',
-            body: JSON.stringify({ name: newItem }),
+            body: JSON.stringify(newItemData),
             headers: { 'Content-Type': 'application/json' },
         })
             .then(r => r.json())

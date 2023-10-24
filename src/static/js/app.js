@@ -73,10 +73,9 @@ function TodoListCard() {
 }
 
 function getCurrentDateTime() {
-    const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString();
-    return `${date} - ${time}`;
+    var now = new Date();
+    var date = now.toLocaleString();
+    return `${date}`;
 }
 
 function AddItemForm({ onNewItem }) {

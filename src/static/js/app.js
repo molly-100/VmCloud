@@ -137,6 +137,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
             method: 'PUT',
             body: JSON.stringify({
                 name: item.name,
+                dateTime: item.dateTime,
                 completed: !item.completed,
             }),
             headers: { 'Content-Type': 'application/json' },

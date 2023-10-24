@@ -174,9 +174,6 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                         />
                     </Button>
                 </Col>
-                <Col xs={10} className="name">
-                    {item.name}
-                </Col>
                 <Col xs={10} className="name" 
                     draggable="true"
                     onDragStart={(e) => e.dataTransfer.setData('text/plain', item.id)}

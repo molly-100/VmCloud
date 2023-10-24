@@ -177,7 +177,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                     draggable="true"
                     onDragStart={(e) => e.dataTransfer.setData('text/plain', item.id)}
                 >
-                    {item.name} - {item.dateTime}
+                    {item.name, item.dateTime}
                 </Col>
                 <Col xs={1} className="text-center remove">
                     <Button

@@ -72,6 +72,13 @@ function TodoListCard() {
     );
 }
 
+function getCurrentDateTime() {
+    const now = new Date();
+    const date = now.toLocaleDateString();
+    const time = now.toLocaleTimeString();
+    return `${date} - ${time}`;
+}
+
 function AddItemForm({ onNewItem }) {
     const { Form, InputGroup, Button } = ReactBootstrap;
 
@@ -81,6 +88,10 @@ function AddItemForm({ onNewItem }) {
     const submitNewItem = e => {
         e.preventDefault();
         setSubmitting(true);
+        const newItemData = {
+            name: newItem,
+            dateTime: getCurrentDateTime(), 
+        };
         fetch('/items', {
             method: 'POST',
             body: JSON.stringify({ name: newItem }),
@@ -165,6 +176,12 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                 </Col>
                 <Col xs={10} className="name">
                     {item.name}
+                </Col>
+                <Col xs={10} className="name" 
+                    draggable="true"
+                    onDragStart={(e) => e.dataTransfer.setData('text/plain', item.id)}
+                >
+                    {item.name} - {item.dateTime}
                 </Col>
                 <Col xs={1} className="text-center remove">
                     <Button

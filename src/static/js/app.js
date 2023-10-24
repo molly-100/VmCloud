@@ -75,6 +75,7 @@ function TodoListCard() {
 function getCurrentDateTime() {
     var now = new Date();
     var date = now.toLocaleString();
+    console.log(date);
     return `${date}`;
 }
 

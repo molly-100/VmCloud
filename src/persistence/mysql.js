@@ -107,8 +107,8 @@ async function storeItem(item) {
 async function updateItem(id, item) {
     return new Promise((acc, rej) => {
         pool.query(
-            'UPDATE todo_items SET name=?, dateTime=?, completed=? WHERE id=?',
-            [item.name, item.dateTime, item.completed ? 1 : 0, id],
+            'UPDATE todo_items SET name=?, completed=? WHERE id=?',
+            [item.name, item.completed ? 1 : 0, id],
             err => {
                 if (err) return rej(err);
                 acc();

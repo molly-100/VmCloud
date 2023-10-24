@@ -92,6 +92,7 @@ function AddItemForm({ onNewItem }) {
             name: newItem,
             dateTime: getCurrentDateTime(), 
         };
+        console.log(newItemData);
         fetch('/items', {
             method: 'POST',
             body: JSON.stringify(newItemData),

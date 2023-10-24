@@ -39,7 +39,7 @@ async function init() {
 
     return new Promise((acc, rej) => {
         pool.query(
-            'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), completed boolean) DEFAULT CHARSET utf8mb4',
+            'CREATE TABLE IF NOT EXISTS todo_items (id varchar(36), name varchar(255), dateTime varchar(255), completed boolean) DEFAULT CHARSET utf8mb4',
             err => {
                 if (err) return rej(err);
 
@@ -67,6 +67,7 @@ async function getItems() {
                 rows.map(item =>
                     Object.assign({}, item, {
                         completed: item.completed === 1,
+                        dateTime: item.dateTime,
                     }),
                 ),
             );
@@ -82,6 +83,7 @@ async function getItem(id) {
                 rows.map(item =>
                     Object.assign({}, item, {
                         completed: item.completed === 1,
+                        dateTime: item.dateTime,
                     }),
                 )[0],
             );
@@ -92,8 +94,8 @@ async function getItem(id) {
 async function storeItem(item) {
     return new Promise((acc, rej) => {
         pool.query(
-            'INSERT INTO todo_items (id, name, completed) VALUES (?, ?, ?)',
-            [item.id, item.name, item.completed ? 1 : 0],
+            'INSERT INTO todo_items (id, name, dateTime, completed) VALUES (?, ?, ?, ?)',
+            [item.id, item.name, item.dateTime, item.completed ? 1 : 0],
             err => {
                 if (err) return rej(err);
                 acc();
@@ -105,8 +107,8 @@ async function storeItem(item) {
 async function updateItem(id, item) {
     return new Promise((acc, rej) => {
         pool.query(
-            'UPDATE todo_items SET name=?, completed=? WHERE id=?',
-            [item.name, item.completed ? 1 : 0, id],
+            'UPDATE todo_items SET name=?, dateTime=?, completed=? WHERE id=?',
+            [item.name, item.dateTime, item.completed ? 1 : 0, id],
             err => {
                 if (err) return rej(err);
                 acc();

@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: 
+  name: testapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: 
+      app: testapp
   template:
     metadata:
       labels:
-        app: 
+        app: testapp
     spec:
       containers:
-        - name: 
-          image: labo5test.azurecr.io/
+        - name: testapp
+          image: labo5test.azurecr.io/testapp
           ports:
           - containerPort: 80

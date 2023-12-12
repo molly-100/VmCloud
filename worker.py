@@ -48,6 +48,5 @@ def addWorker(token, num):
       return "Error\n"+resp.content.decode('utf-8') + '\n\n\n'+data
 
 
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port='8080')

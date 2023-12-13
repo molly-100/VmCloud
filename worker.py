@@ -29,6 +29,7 @@ def add():
     return "Use post to add" # replace with form template
   else:
     token=get_api_key()
+    token= token.strip("\n")
     ret = addWorker(token,request.form['num'])
     return ret
 

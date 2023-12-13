@@ -9,12 +9,12 @@
     {
       "autoDelete": true,
       "boot": true,
-      "deviceName": "salve1",
+      "deviceName": "slave3",
       "initializeParams": {
         "diskSizeGb": "10",
         "diskType": "projects/sparks-408011/zones/europe-west1-b/diskTypes/pd-standard",
         "labels": {},
-        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20231115"
+        "sourceImage": "projects/sparks-408011/regions/europe-west1/subnetworks/default"
       },
       "mode": "READ_WRITE",
       "type": "PERSISTENT"
@@ -38,7 +38,7 @@
       }
     ]
   },
-  "name": "salve1",
+  "name": "slave3",
   "networkInterfaces": [
     {
       "accessConfigs": [
